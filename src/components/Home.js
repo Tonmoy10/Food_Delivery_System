@@ -1,14 +1,19 @@
 import axios from 'axios'
 import React from 'react'
 
-const baseURL = 'http://localhost:44364/api/view/couriers'
+const baseURL = 'https://localhost:44364/api/Admin/ViewAll'
 
 const Home = () => {
-    const [employees, setEmployee] = React.useState(null)
+    const [employees, setEmployee] = React.useState([])
 
     React.useEffect(() => {
-        axios.get(baseURL).then(response => {
+        axios.get(baseURL).then((response) => {
+            console.log(response.data)
+            debugger
             setEmployee(response.data)
+        },
+        (err)=> {
+            debugger
         })
     }, [])
 
@@ -17,7 +22,7 @@ const Home = () => {
     return (
         <div>
             {employees.map(employee => (
-                <p>{employee.courier_name}</p>
+                <p>{employee.admin_name}</p>
             ))}
         </div>
     )
