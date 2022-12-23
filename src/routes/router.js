@@ -6,6 +6,8 @@ import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
 import Employees from '../components/Employees'
 import Create from '../components/Create'
+import Register from '../components/Register'
+import Login from '../components/Login'
 
 const router = () => {
     return (
@@ -13,6 +15,8 @@ const router = () => {
             {/* <Navbar /> */}
             {/* <Sidebar /> */}
             <Routes>
+                <Route path='/login' element={<Login />} />
+                <Route path='/register' element={<Register />} />
                 <Route path='/dashboard' element={<Dashboard />} />
                 <Route path='/employees' element={<Employees />} />
                 <Route path='/employee/create' element={<Create />} />

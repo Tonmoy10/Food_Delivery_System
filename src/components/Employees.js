@@ -22,23 +22,19 @@ const Employees = () => {
     }, [])
 
     return (
-        <div className="flex">
-            <Sidebar/>
+        <div className='flex'>
+            <Sidebar />
             <div>
-            {/* <div className='shadow-2xl shadow-indigo-600'>
+                {/* <div className='shadow-2xl shadow-indigo-600'>
                 <div className='flex justify-end mr-32'>
                     <button className='px-5 py-1 mt-4 font-semibold text-white bg-blue-700 rounded-md hover:bg-blue-800'>
                         <a href='/employee/create'>Add</a>
                     </button>
                 </div>
             </div> */}
-            {
-                employees.map((employee) => {
-                    return (
-                        <p>{employee.id}</p>
-                    )
-                })
-            }
+                {employees.map(employee => {
+                    return <p>{employee.admin_id}</p>
+                })}
             </div>
         </div>
     )
