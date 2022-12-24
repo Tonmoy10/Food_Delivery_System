@@ -8,6 +8,7 @@ import Employees from '../components/Employees'
 import Create from '../components/Create'
 import Register from '../components/Register'
 import Login from '../components/Login'
+import Show from '../components/Show'
 
 const router = () => {
     return (
@@ -20,6 +21,7 @@ const router = () => {
                 <Route path='/dashboard' element={<Dashboard />} />
                 <Route path='/employees' element={<Employees />} />
                 <Route path='/employee/create' element={<Create />} />
+                <Route path='/employee/:id' element={<Show />} />
             </Routes>
         </BrowserRouter>
     )

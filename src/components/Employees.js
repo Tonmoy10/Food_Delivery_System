@@ -1,9 +1,10 @@
 import axios from 'axios'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import Sidebar from './Sidebar'
 
-const baseURL = 'https://localhost:44364/api/Admin/ViewAll'
+const baseURL = 'https://localhost:44364/api/View/Couriers'
 
 const Employees = () => {
     const [employees, setEmployee] = React.useState([])
@@ -24,16 +25,18 @@ const Employees = () => {
     return (
         <div className='flex'>
             <Sidebar />
-            <div>
-                {/* <div className='shadow-2xl shadow-indigo-600'>
-                <div className='flex justify-end mr-32'>
-                    <button className='px-5 py-1 mt-4 font-semibold text-white bg-blue-700 rounded-md hover:bg-blue-800'>
-                        <a href='/employee/create'>Add</a>
-                    </button>
-                </div>
-            </div> */}
-                {employees.map(employee => {
-                    return <p>{employee.admin_id}</p>
+            <div className='flex flex-col flex-1 h-screen overflow-y-hidden'>
+            <div className='flex items-center justify-between h-16 px-6 border-b border-gray-400 shadow-slate-500 shadow bg-gray-100'>
+                    <div className='font-bold text-xl text-gray-900'>All Employees</div>
+                    <div className='flex items-center justify-center w-10 h-10 text-white bg-gray-900 border border-gray-500 rounded-full shadow shadow-slate-400 hover:cursor-pointer hover:shadow-slate-900 hover:shadow'>TJ</div>
+            </div>
+                {employees.map((employee, index) => {
+                    return (
+                        <div key={index} className='flex items-center justify-between h-16 px-6 w-full border-b border-gray-400'>
+                            <div className='flex items-center justify-center w-10 h-10 text-white bg-blue-900 border border-gray-500 rounded-full'>TJ</div>
+                            <Link to={{ pathname: '/employee/' + employee.courier_id }}>{employee.courier_name}</Link>
+                        </div>
+                    )
                 })}
             </div>
         </div>
