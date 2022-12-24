@@ -9,6 +9,7 @@ import Create from '../components/Create'
 import Register from '../components/Register'
 import Login from '../components/Login'
 import Show from '../components/Show'
+import Edit from '../components/Edit'
 
 const router = () => {
     return (
@@ -22,6 +23,7 @@ const router = () => {
                 <Route path='/employees' element={<Employees />} />
                 <Route path='/employee/create' element={<Create />} />
                 <Route path='/employee/:id' element={<Show />} />
+                <Route path='/employee/edit/:id' element={<Edit />} />
             </Routes>
         </BrowserRouter>
     )
