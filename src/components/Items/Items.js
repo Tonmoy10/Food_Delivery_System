@@ -2,19 +2,19 @@ import axios from 'axios'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import Sidebar from './Sidebar'
+import Sidebar from '../Sidebar'
 
-const baseURL = 'https://localhost:44364/api/View/Couriers'
+const baseURL = 'https://localhost:44364/api/View/Items'
 
-const Employees = () => {
-    const [employees, setEmployee] = React.useState([])
+const Items = () => {
+    const [items, setItem] = React.useState([])
 
     React.useEffect(() => {
         axios.get(baseURL).then(
             response => {
                 console.log(response.data)
                 debugger
-                setEmployee(response.data)
+                setItem(response.data)
             },
             err => {
                 debugger
@@ -27,14 +27,14 @@ const Employees = () => {
             <Sidebar />
             <div className='flex flex-col flex-1 h-screen overflow-y-hidden'>
                 <div className='flex items-center justify-between h-16 px-6 bg-gray-100 border-b border-gray-400 shadow shadow-slate-500'>
-                    <div className='text-xl font-bold text-gray-900'>All Employees</div>
+                    <div className='text-xl font-bold text-gray-900'>All Items</div>
                     <div className='flex items-center justify-center w-10 h-10 text-white bg-gray-900 border border-gray-500 rounded-full shadow shadow-slate-400 hover:cursor-pointer hover:shadow-slate-900 hover:shadow'>TJ</div>
                 </div>
-                {employees.map((employee, index) => {
+                {items.map((item, index) => {
                     return (
                         <div key={index} className='flex items-center w-full h-16 px-6 border-b border-gray-400'>
-                            <div className='flex items-center justify-center w-10 h-10 text-white bg-blue-900 border border-gray-500 rounded-full'>TJ</div>
-                            <Link to={{ pathname: '/employee/' + employee.courier_id }}>{employee.courier_name}</Link>
+                            <div className='flex items-center justify-center w-10 h-10 text-white bg-blue-900 border border-gray-500 rounded-full'>FD-{item.item_id}</div>
+                            <Link to={{ pathname: '/item/' + item.item_id }}>{item.item_name}</Link>
                         </div>
                     )
                 })}
@@ -43,4 +43,4 @@ const Employees = () => {
     )
 }
 
-export default Employees
+export default Items
