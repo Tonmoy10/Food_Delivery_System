@@ -1,22 +1,73 @@
+import axios from '../axios'
 import React from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import CartAdd from './Customers/CartAdd'
 
-export default function Login() {
+const Login = () => {
+    let navigate = useNavigate()
+    const [username, setUsername] = React.useState('')
+    const [password, setPassword] = React.useState('')
+    const [userid, setUserId] = React.useState('')
+
+    const handleLogin = (e) => {
+        e.preventDefault()
+        const data = {
+            username:username,
+            password: password
+        }
+
+        axios.post('login', data).then(
+            success => {
+                console.log(success.data)
+                localStorage.setItem("_authToken", success.data.token_key)
+
+                axios.get(`View/User/${success.data.user_id}`).then((res) => {
+
+                    if(res.data.role === "Admin"){
+                        navigate('/dashboard')
+                    }
+                    else if(res.data.role === "Customer")
+                    {
+                        // <CartAdd idd={success.data.user_id}/>
+                        navigate('/dashboard/customer')
+                    }
+                    // else if(res.data.role === "Courier")
+                    // {
+                    //     navigate('')
+                    // }
+                    else{
+                        console.log("I am here")
+                    }
+                })
+                // navigate('/dashboard')
+            },
+            error => {
+                console.log(error)
+                debugger
+            }
+        )
+    }
+
     return (
         <div className='relative flex flex-col justify-center min-h-screen overflow-hidden'>
             <div className='w-full p-6 m-auto bg-white rounded-md shadow-xl lg:max-w-xl'>
                 <h1 className='text-3xl font-semibold text-center text-blue-900 uppercase'>Sign in</h1>
-                <form className='mt-6'>
+                <form className='mt-6' onSubmit={handleLogin}>
                     <div className='mb-2'>
-                        <label for='email' className='block text-sm font-semibold text-blue-900'>
+                        <label className='block text-sm font-semibold text-blue-900'>
                             Email
                         </label>
-                        <input type='email' className='block w-full px-4 py-2 mt-2 text-gray-800 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40' />
+                        <input type='email' name='username' className='block w-full px-4 py-2 mt-2 text-gray-800 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40' value={username} onChange={(e) => {
+                            setUsername(e.target.value)
+                        }}/>
                     </div>
                     <div className='mb-2'>
-                        <label for='password' className='block text-sm font-semibold text-blue-900'>
+                        <label className='block text-sm font-semibold text-blue-900'>
                             Password
                         </label>
-                        <input type='password' className='block w-full px-4 py-2 mt-2 text-gray-800 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40' />
+                        <input type='password' name='password' className='block w-full px-4 py-2 mt-2 text-gray-800 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40' value={password} onChange={(e) => {
+                            setPassword(e.target.value)
+                        }}/>
                     </div>
                     <a href='#' className='text-xs text-blue-700 hover:underline'>
                         Forget Password?
@@ -53,3 +104,5 @@ export default function Login() {
         </div>
     )
 }
+
+export default Login

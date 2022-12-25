@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import dateFormat from 'dateformat'
 
-import Sidebar from './Sidebar'
+import Sidebar from '../Sidebar'
 
-import axios from 'axios'
+import axios from '../../axios'
 
 const Create = () => {
     let navigate = useNavigate()
@@ -15,13 +16,14 @@ const Create = () => {
     }, [])
 
     const getItem = () => {
-        axios.get(`https://localhost:44364/api/View/Item/${id}`).then(res => {
-            setEmployee({
+        axios.get(`View/Item/${id}`).then(res => {
+            console.log(res)
+            setItem({
                 item_id: res.data.item_id,
                 item_name: res.data.item_name,
                 stock: res.data.stock,
                 unit_price: res.data.unit_price,
-                man_date: res.data.man_date,
+                man_date: dateFormat(res.data.man_date, "DD-mm-yyyy"),
                 exp_date: res.data.exp_date
             })
         })
@@ -39,7 +41,7 @@ const Create = () => {
 
     const handleSubmit = e => {
         e.preventDefault()
-        axios.post('https://localhost:44364/api/Item/Update', item).then(
+        axios.post('Item/Update', item).then(
             res => {
                 navigate('/items')
             },
@@ -75,12 +77,12 @@ const Create = () => {
                             {/* item manufacturing date*/}
                             <div className='relative pb-4'>
                                 <label className='absolute text-sm font-bold text-gray-900 uppercase'>Production date</label>
-                                <input name='contact' type='date' className='w-full pt-8 pb-2 text-gray-900 border-b focus:outline-none focus:border-blue-500' value={item.man_date} onChange={handleChange} />
+                                <input name='man_date' type='date' className='w-full pt-8 pb-2 text-gray-900 border-b focus:outline-none focus:border-blue-500' value={item.man_date} onChange={handleChange} />
                             </div>
                             {/* item expiry date*/}
                             <div className='relative pb-4'>
                                 <label className='absolute text-sm font-bold text-gray-900 uppercase'>Expiry date</label>
-                                <input name='location' type='text' className='w-full pt-8 pb-2 text-gray-900 border-b focus:outline-none focus:border-blue-500' value={item.exp_date || ''} onChange={handleChange} />
+                                <input name='exp_date' type='text' className='w-full pt-8 pb-2 text-gray-900 border-b focus:outline-none focus:border-blue-500' value={item.exp_date || ''} onChange={handleChange} />
                             </div>
 
                             <div className='flex justify-end'>

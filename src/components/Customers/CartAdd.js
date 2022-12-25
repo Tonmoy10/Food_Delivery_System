@@ -6,28 +6,56 @@ import Sidebar from '../Sidebar'
 import axios from '../../axios'
 // import UserCircle from './UserCircle'
 
-const Show = () => {
+const CartAdd = ({idd}) => {
     let navigate = useNavigate()
     const [item, setItem] = useState({})
+    const [cart, setCart] = useState({})
+    const [quantity, setQuantity] = useState(0)
     const { id } = useParams()
 
     React.useEffect(() => {
         axios.get(`View/Item/${id}`).then(
             response => {
                 setItem(response.data)
+                debugger
             },
             err => {}
         )
     }, [])
 
-    // const deleteItem = id => {
-    //     axios.get(`https://localhost:44364/api/Item/Delete/${id}`).then(
-    //         res => {
-    //             navigate('/items')
-    //         },
-    //         err => {}
-    //     )
-    // }
+    const counter = () => {
+        setQuantity((count) => {
+            return count + 1
+        })
+    }
+
+    const handleSubmit = e => {
+        axios.get('getUser').then(
+            res => {
+                console.log(res.data)
+                debugger
+                setCart({
+                    item_id : item.item_id,
+                    total_price : item.unit_price * quantity,
+                    customer_id : res.data
+                })
+            },
+            err => {
+                console.log(err)
+            }
+        )
+        debugger
+        
+        // console.log(idd)
+        axios.post('Add/Cart', cart).then(
+            res => {
+                navigate('/Item/List')
+            },
+            err => {
+                console.log(cart)
+            }
+        )
+    }
 
     return (
         <div className='flex'>
@@ -42,13 +70,11 @@ const Show = () => {
                     <div className='w-2/4 mt-16 ml-24 shadow shadow-slate-800 h-96'>
                         <div className='flex items-center w-full h-16 px-6 mt-8 ml-12 text-2xl font-bold tracking-wide'>{item.item_name}</div>
                         <div className='ml-28'>
-                            <div className='flex mt-4 ml-2 text-xl font-semibold tracking-wide'>
+                            {/* <div className='flex mt-4 ml-2 text-xl font-semibold tracking-wide'>
                                 Food ID: <span>FD-{item.item_id}</span>
-                            </div>
-                            <div className='flex mt-4 ml-2 text-xl font-semibold tracking-wide'>Quantity: {item.stock}</div>
+                            </div> */}
                             <div className='flex mt-4 ml-2 text-xl font-semibold tracking-wide'>Unit Price: {item.unit_price}</div>
-                            <div className='flex mt-4 ml-2 text-xl font-semibold tracking-wide'>Production Date: {item.man_date}</div>
-                            <div className='flex mt-4 ml-2 text-xl font-semibold tracking-wide bg-slate-400'>Expiry Date: {item.exp_date}</div>
+                            <input name="quantity" type="number" min="0" placeholder='quantity' onClick={counter}/>
                         </div>
                     </div>
                     {/* <div className='flex justify-end flex-1 mt-32 mr-48'>
@@ -66,11 +92,10 @@ const Show = () => {
                     <div className='ml-4'>
                         {/* give condition, if less than 200 then button otherwise not */}
                 
-                            <button className='px-6 py-2 text-xl text-white bg-blue-900 rounded-lg hover:bg-blue-800 hover:shadow hover:shadow-blue-500'>
-                                <Link to={{ pathname: '/item/edit/' + item.item_id }}>Restock</Link>
+                            <button onClick={()=>handleSubmit()} className='px-6 py-2 text-xl text-white bg-blue-900 rounded-lg hover:bg-blue-800 hover:shadow hover:shadow-blue-500'>
+                                Add
                             </button>
-                        
-                        else {}
+                    
                     </div>
                 </div>
             </div>
@@ -78,4 +103,4 @@ const Show = () => {
     )
 }
 
-export default Show
+export default CartAdd

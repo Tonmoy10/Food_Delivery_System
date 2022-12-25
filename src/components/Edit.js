@@ -3,9 +3,8 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 
 import Sidebar from './Sidebar'
 
-import axios from 'axios'
+import axios from '../axios'
 
-const baseURL = 'https://localhost:44364/api/View/Courier/{id}'
 
 const Create = () => {
     let navigate = useNavigate()
@@ -17,7 +16,7 @@ const Create = () => {
     }, [])
 
     const getUser = () => {
-        axios.get(`https://localhost:44364/api/View/Courier/${id}`).then(res => {
+        axios.get(`View/Courier/${id}`).then(res => {
             setEmployee({
                 courier_id: res.data.courier_id,
                 courier_name: res.data.courier_name,
@@ -28,7 +27,6 @@ const Create = () => {
                 password: res.data.password,
                 user_id: res.data.user_id
             })
-            //console.log(res.data)
         })
     }
 
@@ -46,7 +44,7 @@ const Create = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         //console.log(employee)
-        axios.post('https://localhost:44364/api/Courier/Update', employee).then(
+        axios.post('Courier/Update', employee).then(
             res => {
                 navigate('/employees')
                 // debugger

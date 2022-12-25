@@ -1,16 +1,15 @@
-import axios from 'axios'
+import axios from '../axios'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
 import Sidebar from './Sidebar'
 
-const baseURL = 'https://localhost:44364/api/View/Couriers'
 
 const Employees = () => {
     const [employees, setEmployee] = React.useState([])
 
     React.useEffect(() => {
-        axios.get(baseURL).then(
+        axios.get("View/Couriers").then(
             response => {
                 console.log(response.data)
                 debugger

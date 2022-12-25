@@ -4,9 +4,8 @@ import { Link } from 'react-router-dom'
 
 import Sidebar from '../Sidebar'
 
-const baseURL = 'https://localhost:44364/api/View/Items'
 
-const Items = () => {
+const ViewItems = () => {
     const [items, setItem] = React.useState([])
 
     React.useEffect(() => {
@@ -34,7 +33,7 @@ const Items = () => {
                     return (
                         <div key={index} className='flex items-center w-full h-16 px-6 border-b border-gray-400'>
                             <div className='flex items-center justify-center w-10 h-10 text-white bg-blue-900 border border-gray-500 rounded-full'>FD-{item.item_id}</div>
-                            <Link to={{ pathname: '/item/' + item.item_id }}>{item.item_name}</Link>
+                            <Link to={{ pathname: '/Add/Cart/' + item.item_id }}>{item.item_name}</Link>
                         </div>
                     )
                 })}
@@ -43,4 +42,4 @@ const Items = () => {
     )
 }
 
-export default Items
+export default ViewItems

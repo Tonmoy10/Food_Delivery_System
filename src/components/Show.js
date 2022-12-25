@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 
 import Sidebar from './Sidebar'
 
-import axios from 'axios'
+import axios from '../axios'
 import UserCircle from './UserCircle'
 
 const Show = () => {
@@ -12,7 +12,7 @@ const Show = () => {
     const {id} = useParams();
 
     React.useEffect(() => {
-        axios.get(`https://localhost:44364/api/View/Courier/${id}`).then(response => {
+        axios.get(`View/Courier/${id}`).then(response => {
             console.log(response.data)
             debugger
             setEmployee(response.data)
@@ -24,7 +24,7 @@ const Show = () => {
     )
 
     const deleteUser = id => {
-        axios.get(`https://localhost:44364/api/Courier/Delete/${id}`).then(
+        axios.get(`Courier/Delete/${id}`).then(
             res => {
               navigate('/employees')  
             },

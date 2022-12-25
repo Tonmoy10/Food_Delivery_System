@@ -1,20 +1,7 @@
 import React from 'react'
-import Sidebar from './Sidebar'
+import Sidebar from '../Sidebar'
 
 const Dashboard = () => {
-    const [users, setUsers] = React.useState(0)
-
-    React.useEffect(() => {
-        axios.get("View/Users").then(
-            response => {
-                setUsers(response.data)
-            },
-            err => {
-                debugger
-            }
-        )
-    }, [])
-
     return (
         <div className='flex'>
             <Sidebar />
@@ -23,20 +10,18 @@ const Dashboard = () => {
                     <div className='font-bold text-xl text-gray-900'>Dashboard</div>
                     <div className='flex items-center justify-center w-10 h-10 text-white bg-gray-900 border border-gray-500 rounded-full shadow shadow-slate-400 hover:cursor-pointer hover:shadow-slate-900 hover:shadow'>TJ</div>
                 </div>
-                <main className='flex justify-center flex-1'>
+                <main className='flex justify-end flex-1'>
                     <div className='container mx-12 mt-12'>
                         <div className='grid grid-cols-1 gap-6 mb-6 lg:grid-cols-3'>
                             <div className='w-full px-4 py-5 bg-gray-700  rounded-lg shadow shadow-teal-900'>
-                                <div className='text-sm font-medium text-white truncate'>Total users</div>
-                                <div className='mt-1 text-3xl font-semibold text-white'>12,00</div>
+                                <div className='mt-1 text-3xl font-semibold text-white'>
+                                    <a href='/Item/List'>Place Order</a>
+                                </div>
                             </div>
                             <div className='w-full px-4 py-5 bg-gray-700  rounded-lg shadow shadow-teal-900'>
-                                <div className='text-sm font-medium text-white truncate'>Total Profit</div>
-                                <div className='mt-1 text-3xl font-semibold text-white'>$ 450k</div>
-                            </div>
-                            <div className='w-full px-4 py-5 bg-gray-700  rounded-lg shadow shadow-teal-900'>
-                                <div className='text-sm font-medium text-white truncate'>Total Orders</div>
-                                <div className='mt-1 text-3xl font-semibold text-white'>20k</div>
+                                <div className='mt-1 text-3xl font-semibold text-white'>
+                                    <a href='/orders'>View Orders</a>
+                                </div>
                             </div>
                         </div>
                     </div>

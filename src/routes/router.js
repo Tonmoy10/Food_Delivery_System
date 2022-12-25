@@ -6,7 +6,11 @@ import Login from '../components/Login'
 
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
-import Dashboard from '../components/Dashboard'
+
+import DashboardAdmin from '../components/Dashboard'
+import Admins from '../components/Admins/Admins'
+import CreateAdmin from '../components/Admins/Create'
+import ShowAdmin from '../components/Admins/Show'
 
 import Employees from '../components/Employees'
 import CreateEmployee from '../components/Create'
@@ -18,6 +22,14 @@ import CreateItem from '../components/Items/Create'
 import ShowItem from '../components/Items/Show'
 import EditItem from '../components/Items/Edit'
 
+import Customers from '../components/Customers'
+import Orders from '../components/Orders.js/Orders'
+
+import DashboardCustomer from '../components/Customers/Dashboard'
+import ViewItems from '../components/Customers/ViewItems'
+import CartAdd from '../components/Customers/CartAdd'
+import ViewCart from '../components/Customers/ViewCart'
+
 const router = () => {
     return (
         <BrowserRouter>
@@ -26,9 +38,12 @@ const router = () => {
             <Routes>
                 <Route path='/login' element={<Login />} />
                 <Route path='/register' element={<Register />} />
-                <Route path='/dashboard' element={<Dashboard />} />
 
                 {/* Admins */}
+                <Route path='/dashboard' element={<DashboardAdmin />} />
+                <Route path='/admins' element={<Admins />} />
+                <Route path='/admin/create' element={<CreateAdmin/>}/>
+                <Route path='/admin/:id' element={<ShowAdmin />} />
 
                 {/* Employees */}
                 <Route path='/employees' element={<Employees />} />
@@ -41,6 +56,16 @@ const router = () => {
                 <Route path='/item/create' element={<CreateItem />} />
                 <Route path='/item/:id' element={<ShowItem />} />
                 <Route path='/item/edit/:id' element={<EditItem />} />
+
+                {/* Orders */}
+                <Route path='/orders' element={<Orders />} />
+
+                {/* Customer */}
+                <Route path='/dashboard/customer' element={<DashboardCustomer/>}/>
+                <Route path='/customers' element={<Customers/>}/>
+                <Route path='/Item/List' element={<ViewItems />} />
+                <Route path='/Add/Cart/:id' element={<CartAdd />} />
+                <Route path='/view/cart' element={<ViewCart/>} />
             </Routes>
         </BrowserRouter>
     )

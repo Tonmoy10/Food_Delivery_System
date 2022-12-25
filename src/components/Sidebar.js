@@ -1,9 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import axios from '../axios'
 import Search from './Search'
 
 export default function Sidebar() {
+    const logout=()=>{
+        axios.get("logout").then
+        ((rsp)=>{
+            debugger;
+            window.location.href="/login";
+        },(error)=>{
+            debugger
+        })
+        }
     return (
         <div className='flex flex-col h-screen p-3 bg-gray-800 shadow w-60 sticky top-0'>
             <div className='space-y-3'>
@@ -56,6 +66,14 @@ export default function Sidebar() {
                             </a>
                         </li>
                         <li className='rounded-sm hover:bg-gray-700 hover:rounded-lg'>
+                            <a href='/customers' className='flex items-center p-2 space-x-3 rounded-md'>
+                                <svg xmlns='http://www.w3.org/2000/svg' className='w-6 h-6 text-gray-100' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth={2}>
+                                    <path strokeLinecap='round' strokeLinejoin='round' d='M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z' />
+                                </svg>
+                                <span className='text-gray-100'>Customers</span>
+                            </a>
+                        </li>
+                        <li className='rounded-sm hover:bg-gray-700 hover:rounded-lg'>
                             <a href='#' className='flex items-center p-2 space-x-3 rounded-md'>
                                 <svg xmlns='http://www.w3.org/2000/svg' className='w-6 h-6 text-gray-100' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth={2}>
                                     <path
@@ -69,7 +87,7 @@ export default function Sidebar() {
                             </a>
                         </li>
                         <li className='rounded-sm hover:bg-gray-700 hover:rounded-lg'>
-                            <a href='#' className='flex items-center p-2 space-x-3 rounded-md'>
+                            <a href='#' onClick={logout} className='flex items-center p-2 space-x-3 rounded-md'>
                                 <svg xmlns='http://www.w3.org/2000/svg' className='w-6 h-6 text-gray-100' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth={2}>
                                     <path strokeLinecap='round' strokeLinejoin='round' d='M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1' />
                                 </svg>

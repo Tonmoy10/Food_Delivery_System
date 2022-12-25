@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-import Sidebar from './Sidebar'
+import Sidebar from '../Sidebar'
 
-import axios from 'axios'
+import axios from '../../axios'
 
-const baseURL = 'https://localhost:44364/api/Add/Item'
 
 const Create = () => {
     let navigate = useNavigate()
@@ -22,7 +21,7 @@ const Create = () => {
 
     const handleSubmit = e => {
         e.preventDefault()
-        axios.post(baseURL, item).then(
+        axios.post("Add/Item", item).then(
             res => {
                 navigate('/items')
             },
