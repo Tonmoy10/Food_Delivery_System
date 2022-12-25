@@ -74,7 +74,8 @@ const CartAdd = ({idd}) => {
                                 Food ID: <span>FD-{item.item_id}</span>
                             </div> */}
                             <div className='flex mt-4 ml-2 text-xl font-semibold tracking-wide'>Unit Price: {item.unit_price}</div>
-                            <input name="quantity" type="number" min="0" placeholder='quantity' onClick={counter}/>
+                                <input className='border border-blue-900 mt-2 ml-4 shadow shadow-slate-800' name="quantity" type="number" min="0" placeholder='quantity' onClick={counter}/>
+                          
                         </div>
                     </div>
                     {/* <div className='flex justify-end flex-1 mt-32 mr-48'>

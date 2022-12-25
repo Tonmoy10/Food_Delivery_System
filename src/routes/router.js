@@ -29,6 +29,9 @@ import DashboardCustomer from '../components/Customers/Dashboard'
 import ViewItems from '../components/Customers/ViewItems'
 import CartAdd from '../components/Customers/CartAdd'
 import ViewCart from '../components/Customers/ViewCart'
+import Profile from '../components/Customers/Profile'
+import EditProfile from '../components/Customers/EditProfile'
+import GoogleLogin2 from '../components/GoogleLogin'
 
 const router = () => {
     return (
@@ -66,6 +69,10 @@ const router = () => {
                 <Route path='/Item/List' element={<ViewItems />} />
                 <Route path='/Add/Cart/:id' element={<CartAdd />} />
                 <Route path='/view/cart' element={<ViewCart/>} />
+                <Route path='/customer/profile' element={<Profile/>}/>
+                <Route path='/customer/edit' element={<EditProfile/>}/>
+
+                <Route path='/login/google' element={<GoogleLogin2/>}/>
             </Routes>
         </BrowserRouter>
     )

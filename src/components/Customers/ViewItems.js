@@ -35,9 +35,20 @@ const ViewItems = () => {
                             <div className='flex items-center justify-center w-10 h-10 text-white bg-blue-900 border border-gray-500 rounded-full'>FD-{item.item_id}</div>
                             <Link to={{ pathname: '/Add/Cart/' + item.item_id }}>{item.item_name}</Link>
                         </div>
+                        
                     )
                 })}
+                <div className='ml-4'>
+                
+                <a href='/view/cart'>
+                    <button onClick={()=>handleSubmit()} className='px-6 py-2 text-xl text-white bg-blue-900 rounded-lg hover:bg-blue-800 hover:shadow hover:shadow-blue-500'>
+                        Go to Cart
+                    </button>
+                </a>
+                    
             </div>
+            </div>
+            
         </div>
     )
 }

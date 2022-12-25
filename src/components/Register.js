@@ -1,6 +1,31 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { useNavigate } from 'react-router-dom'
+import axios from '../axios'
 
 export default function Registration() {
+    let navigate = useNavigate()
+    const [user, setUser] = useState({})
+    const handleChange = e => {
+        const name = e.target.name
+        const value = e.target.value
+
+        setUser(values => ({
+            ...values,
+            [name]: value
+        }))
+    }
+
+    const handleSubmit = e => {
+        e.preventDefault()
+        axios.post('/Add/Customer', user).then(
+            res => {
+                navigate('/login')
+            },
+            err => {
+                console.log(err)
+            }
+        )
+    }
     return (
         <div>
             <div className='flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gray-50'>
@@ -8,30 +33,32 @@ export default function Registration() {
                     <a href='/'>FOOOOOOD</a>
                 </div>
                 <div className='w-full px-6 py-4 mt-6 overflow-hidden bg-white shadow-md sm:max-w-lg sm:rounded-lg'>
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <div className='mt-2'>
-                            <label for='name' className='block text-sm font-semibold text-blue-900'>
-                                Name
-                            </label>
-                            <input type='text' className='block w-full px-4 py-2 mt-2 text-gray-800 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40' />
+                            <label className='block text-sm font-semibold text-blue-900'>Name</label>
+                            <input
+                                type='text'
+                                name='customer_name'
+                                className='block w-full px-4 py-2 mt-2 text-gray-800 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40'
+                                value={user.customer_name || ''}
+                                onChange={handleChange}
+                            />
                         </div>
                         <div className='mt-2'>
-                            <label for='email' className='block text-sm font-semibold text-blue-900'>
-                                Email
-                            </label>
-                            <input type='email' className='block w-full px-4 py-2 mt-2 text-gray-800 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40' />
+                            <label className='block text-sm font-semibold text-blue-900'>Email</label>
+                            <input type='email' name='email' className='block w-full px-4 py-2 mt-2 text-gray-800 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40' value={user.email || ''} onChange={handleChange} />
                         </div>
                         <div className='mt-2'>
-                            <label for='password' className='block text-sm font-semibold text-blue-900'>
-                                Password
-                            </label>
-                            <input type='password' className='block w-full px-4 py-2 mt-2 text-gray-800 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40' />
+                            <label className='block text-sm font-semibold text-blue-900'>Password</label>
+                            <input type='password' name='password' className='block w-full px-4 py-2 mt-2 text-gray-800 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40' value={user.password || ''} onChange={handleChange} />
                         </div>
                         <div className='mt-2'>
-                            <label for='confirm_password' className='block text-sm font-semibold text-blue-900'>
-                                Confirm Password
-                            </label>
-                            <input type='password' className='block w-full px-4 py-2 mt-2 text-gray-800 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40' />
+                            <label className='block text-sm font-semibold text-blue-900'>Location</label>
+                            <input type='text' name='location' className='block w-full px-4 py-2 mt-2 text-gray-800 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40' value={user.location || ''} onChange={handleChange} />
+                        </div>
+                        <div className='mt-2'>
+                            <label className='block text-sm font-semibold text-blue-900'>Contact</label>
+                            <input type='text' name='contact' className='block w-full px-4 py-2 mt-2 text-gray-800 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40' value={user.contact || ''} onChange={handleChange} />
                         </div>
                         <a href='#' className='text-xs text-blue-700 hover:underline'>
                             Forget Password?

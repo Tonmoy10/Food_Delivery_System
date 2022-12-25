@@ -1,5 +1,6 @@
 import React from 'react'
 import Sidebar from './Sidebar'
+import axios from 'axios'
 
 const Dashboard = () => {
     const [users, setUsers] = React.useState(0)
