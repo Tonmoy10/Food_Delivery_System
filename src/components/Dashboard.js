@@ -6,7 +6,7 @@ const Dashboard = () => {
     const [users, setUsers] = React.useState(0)
 
     React.useEffect(() => {
-        axios.get("View/Users").then(
+        axios.get("user/count").then(
             response => {
                 setUsers(response.data)
             },
@@ -29,15 +29,15 @@ const Dashboard = () => {
                         <div className='grid grid-cols-1 gap-6 mb-6 lg:grid-cols-3'>
                             <div className='w-full px-4 py-5 bg-gray-700  rounded-lg shadow shadow-teal-900'>
                                 <div className='text-sm font-medium text-white truncate'>Total users</div>
-                                <div className='mt-1 text-3xl font-semibold text-white'>12,00</div>
+                                <div className='mt-1 text-3xl font-semibold text-white'>50</div>
                             </div>
                             <div className='w-full px-4 py-5 bg-gray-700  rounded-lg shadow shadow-teal-900'>
                                 <div className='text-sm font-medium text-white truncate'>Total Profit</div>
-                                <div className='mt-1 text-3xl font-semibold text-white'>$ 450k</div>
+                                <div className='mt-1 text-3xl font-semibold text-white'>BDT 4500</div>
                             </div>
                             <div className='w-full px-4 py-5 bg-gray-700  rounded-lg shadow shadow-teal-900'>
                                 <div className='text-sm font-medium text-white truncate'>Total Orders</div>
-                                <div className='mt-1 text-3xl font-semibold text-white'>20k</div>
+                                <div className='mt-1 text-3xl font-semibold text-white'>20</div>
                             </div>
                         </div>
                     </div>

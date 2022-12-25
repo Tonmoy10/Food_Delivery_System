@@ -33,6 +33,8 @@ import Profile from '../components/Customers/Profile'
 import EditProfile from '../components/Customers/EditProfile'
 import GoogleLogin2 from '../components/GoogleLogin'
 
+import ShowCustomer from '../components/Customers/Show'
+
 const router = () => {
     return (
         <BrowserRouter>
@@ -70,7 +72,7 @@ const router = () => {
                 <Route path='/Add/Cart/:id' element={<CartAdd />} />
                 <Route path='/view/cart' element={<ViewCart/>} />
                 <Route path='/customer/profile' element={<Profile/>}/>
-                <Route path='/customer/edit' element={<EditProfile/>}/>
+                <Route path='/customer/:id' element={<ShowCustomer/>}/>
 
                 <Route path='/login/google' element={<GoogleLogin2/>}/>
             </Routes>
