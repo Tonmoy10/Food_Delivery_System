@@ -30,7 +30,7 @@ export default function Registration() {
         <div>
             <div className='flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gray-50'>
                 <div>
-                    <a href='/'>FOOOOOOD</a>
+                    <h1 className='text-3xl font-semibold text-center text-blue-900 uppercase'>Sign up</h1>
                 </div>
                 <div className='w-full px-6 py-4 mt-6 overflow-hidden bg-white shadow-md sm:max-w-lg sm:rounded-lg'>
                     <form onSubmit={handleSubmit}>
