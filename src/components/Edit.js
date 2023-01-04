@@ -111,7 +111,7 @@ const Create = () => {
                                 <input name='income' type='text' readOnly className='w-full pt-8 pb-2 text-gray-900 border-b focus:outline-none focus:border-blue-500' placeholder='BDT 0.00' value={0} onChange={handleChange} />
                             </div>
                             {/* password */}
-                            <div className='relative pb-4'>
+                            <div className='relative pb-4' hidden>
                                 <label className='absolute text-sm font-bold text-gray-900 uppercase'>
                                     Password
                                 </label>

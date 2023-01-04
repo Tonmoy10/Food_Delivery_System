@@ -42,17 +42,17 @@ const ViewCart = () => {
                     <div className='text-xl font-bold text-gray-900'>Cart Items</div>
                     <div className='flex items-center justify-center w-10 h-10 text-white bg-gray-900 border border-gray-500 rounded-full shadow shadow-slate-400 hover:cursor-pointer hover:shadow-slate-900 hover:shadow'>TJ</div>
                 </div>
-                {cart.map((item, index) => {
-                    return (
-                        <div key={index} className='flex items-center w-full h-16 px-6 border-b border-gray-400'>
-                            <div className='flex items-center justify-center w-10 h-10 text-white bg-blue-900 border border-gray-500 rounded-full'>CRT-{item.cart_id}</div>
-                            {/* <Link to={{ pathname: '/Add/Cart/' + item.item_id }}>{cart.customer_id}</Link> */}
-                            {/* <p>{item.customer_id}</p> */}
-                            <p>{item.total_price}</p>
-                            
-                        </div>
-                    )
-                })}
+                <div className='mt-2'>
+                    {cart.map((item, index) => {
+                        return (
+                            <div key={index} className='flex items-center w-full h-16 px-6 border-b border-gray-400'>
+                                <div className='flex items-center justify-center w-10 h-10 text-white bg-blue-900 border border-gray-500 rounded-full'>CRT-{item.cart_id}</div>
+                                <p>{item.total_price}</p>
+                                
+                            </div>
+                        )
+                    })}
+                </div>
                 <div className='ml-4'>                
                     <button onClick={()=>handleSubmit()} className='px-6 py-2 text-xl text-white bg-blue-900 rounded-lg hover:bg-blue-800 hover:shadow hover:shadow-blue-500'>
                         Confirm
